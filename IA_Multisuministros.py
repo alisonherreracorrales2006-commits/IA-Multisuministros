@@ -11,6 +11,8 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from streamlit_lottie import st_lottie
 import requests
+# === Estilo visual personalizado ===
+st.markdown('<link rel="stylesheet" href="assets/style.css">', unsafe_allow_html=True)
 
 BASE_DIR = os.path.dirname(__file__)
 DB_PATH = os.path.join(BASE_DIR, "codigos_multisuministros.db")
@@ -171,21 +173,39 @@ if 'logged_in' not in st.session_state:
     st.session_state['role'] = None
 
 if not st.session_state['logged_in']:
-    # logo in sidebar
-    if os.path.exists(LOGO_PATH):
-        st.sidebar.image(LOGO_PATH, width=180)
-    tab = st.sidebar.radio("¿Tenés cuenta?", ("Iniciar sesión", "Registrarse"))
-    if tab == "Iniciar sesión":
-        username = st.sidebar.text_input("Usuario", key="login_user")
-        password = st.sidebar.text_input("Contraseña", type="password", key="login_pw")
-        if st.sidebar.button("Iniciar sesión"):
-            ok, res = authenticate(username.strip(), password.strip())
-            if ok:
-                st.session_state['logged_in'] = True
-                st.session_state['username'] = username.strip()
-                st.session_state['role'] = res
-                st.sidebar.success(f"Bienvenid@, {st.session_state['username']}")
-                st.rerun()
+    # === Diseño visual de inicio ===
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        st.image("assets/logo.png", use_container_width=True)
+    with col2:
+        st.image("assets/ia_robot.svg", use_container_width=True)
+
+    st.markdown(
+        """
+        <div style="text-align:center; margin-top:-20px;">
+            <h1 style="color:#004AAD; font-weight:800;">IA Multisuministros de Costa Rica</h1>
+            <p style="color:white; font-size:18px;">Gestión inteligente de códigos y solicitudes</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # === Caja de login ===
+    st.markdown("<div class='login-box'>", unsafe_allow_html=True)
+    username = st.text_input(" Usuario", key="login_user")
+    password = st.text_input(" Contraseña", type="password", key="login_pw")
+
+    if st.button("Iniciar sesión"):
+        ok, res = authenticate(username.strip(), password.strip())
+        if ok:
+            st.session_state['logged_in'] = True
+            st.session_state['username'] = username.strip()
+            st.session_state['role'] = res
+            st.success(f"Bienvenido@, {st.session_state['username']}")
+            st.rerun()
+        else:
+            st.error("Usuario o contraseña incorrectos.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
             else:
                 st.sidebar.error(res)
