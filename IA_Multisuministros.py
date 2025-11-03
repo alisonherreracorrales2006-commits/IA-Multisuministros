@@ -185,7 +185,8 @@ if not st.session_state['logged_in']:
                 st.session_state['username'] = username.strip()
                 st.session_state['role'] = res
                 st.sidebar.success(f"Bienvenid@, {st.session_state['username']}")
-                st.experimental_rerun()
+                st.rerun()
+
             else:
                 st.sidebar.error(res)
     else:
@@ -213,12 +214,12 @@ else:
                 st.write(f"- {r['mensaje']} ({r['creado_en'][:19]})")
             if st.sidebar.button("Marcar todas como leídas"):
                 run_query("UPDATE notificaciones SET leido=1 WHERE usuario=?", (st.session_state['username'],))
-                st.experimental_rerun()
+               st.rerun()
     if st.sidebar.button("Cerrar sesión"):
         st.session_state['logged_in'] = False
         st.session_state['username'] = None
         st.session_state['role'] = None
-        st.experimental_rerun()
+        st.rerun()
 
 tabs = st.tabs(["Crear solicitud","Buscador","Panel admin","Exportar"])
 
@@ -243,7 +244,8 @@ with tabs[0]:
                                      VALUES (?,?,?,?,?,?,?)""", (descripcion, precio, proveedor, st.session_state['username'], "Pendiente", "Sin verificación", datetime.now().isoformat()))
                         push_notification(st.session_state['username'], "Solicitud enviada (pendiente de aprobación).")
                         st.success("Solicitud enviada. Será revisada por el administrador.")
-                        st.experimental_rerun()
+                        st.rerun()
+
                 with colB:
                     if st.button("Cancelar"):
                         st.info("Envío cancelado. Podés editar la solicitud.")
@@ -283,7 +285,8 @@ with tabs[2]:
         if st.button("Guardar tolerancia"):
             run_query("INSERT OR REPLACE INTO settings (key, value) VALUES (?,?)", ('tolerancia_precio_pct', str(new_tol)))
             st.success("Tolerancia guardada.")
-            st.experimental_rerun()
+            st.rerun()
+            
         st.subheader("Usuarios")
         st.write(f"Vendedores actuales: {count_vendedores()} / {MAX_VENDEDORES}")
         new_u = st.text_input("Usuario nuevo", key="nu")
@@ -314,9 +317,10 @@ with tabs[2]:
                         if code:
                             run_query("UPDATE solicitudes SET estado='Aprobada', aprobado_por=?, aprobado_en=?, codigo_asignado=? WHERE id=?", (st.session_state['username'], datetime.now().isoformat(), code, r['id']))
                             run_query("INSERT INTO productos (codigo, descripcion, precio, impuesto, proveedor, creado_por, creado_en) VALUES (?,?,?,?,?,?,?)", (code, r['descripcion'], r['precio_ingresado'], 13.0, r['proveedor'], r['vendedor'], datetime.now().isoformat()))
-                            push_notification(r['vendedor'], f"✅ Tu código {code} fue aprobado.")
+                            push_notification(r['vendedor'], f" Tu código {code} fue aprobado.")
                             st.success("Solicitud aprobada y código creado.")
-                            st.experimental_rerun()
+                            st.rerun()
+
                         else:
                             st.warning("Ingresá el número de código.")
                 with cb:
@@ -324,9 +328,10 @@ with tabs[2]:
                         reason = st.text_area(f"Motivo rechazo {r['id']}", key=f"reason{r['id']}")
                         if reason:
                             run_query("UPDATE solicitudes SET estado='Rechazada' WHERE id=?", (r['id'],))
-                            push_notification(r['vendedor'], f"❌ Tu solicitud {r['id']} fue rechazada. Motivo: {reason}")
+                            push_notification(r['vendedor'], f" Tu solicitud {r['id']} fue rechazada. Motivo: {reason}")
                             st.success("Solicitud rechazada.")
-                            st.experimental_rerun()
+                            st.rerun()
+
                         else:
                             st.warning("Escribí motivo.")
 
