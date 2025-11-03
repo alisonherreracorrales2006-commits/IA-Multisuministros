@@ -263,7 +263,7 @@ elif tab == "Registrarse":
 st.sidebar.markdown("---")
 st.sidebar.info("Si tenés problemas, contactá al administrador.")
 
-else:
+ else:
     st.sidebar.write(f"**Usuario:** {st.session_state['username']}")
     st.sidebar.write(f"**Rol:** {st.session_state['role']}")
     noti_df = df_from_query("SELECT id, mensaje, leido, creado_en FROM notificaciones WHERE usuario=? ORDER BY creado_en DESC", (st.session_state['username'],))
