@@ -171,6 +171,27 @@ if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
     st.session_state['username'] = None
     st.session_state['role'] = None
+# === Animación IA en pantalla de inicio ===
+from streamlit_lottie import st_lottie
+import requests
+
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+# Cargar animación del robot IA
+lottie_robot = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json")
+
+# Mostrar animación centrada
+st.markdown("<div style='display:flex; justify-content:center;'>", unsafe_allow_html=True)
+st_lottie(lottie_robot, height=250, key="robot")
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Título estilizado
+st.markdown("<h2 style='text-align:center; color:#00A6FF;'>Bienvenido a Multisuministros</h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:white;'>Inicia sesión para continuar</p>", unsafe_allow_html=True)
 
 if not st.session_state['logged_in']:
     # === Diseño visual de inicio ===
