@@ -210,6 +210,7 @@ if not st.session_state['logged_in']:
         """,
         unsafe_allow_html=True
     )
+tab = st.sidebar.radio("¿Tenés cuenta?", ("Iniciar sesión", "Registrarse"))
 
    # === Caja de login ===
 st.markdown("<div class='login-box'>", unsafe_allow_html=True)
@@ -231,7 +232,6 @@ elif tab == "Registrarse":
     st.sidebar.markdown("### Registrarse")
     new_user = st.sidebar.text_input("Usuario nuevo", key="reg_user")
     new_pass = st.sidebar.text_input("Contraseña", type="password", key="reg_pw")
-
     if st.sidebar.button("Crear cuenta"):
         if new_user.strip() and new_pass.strip():
             ok, msg = register_user(new_user.strip(), new_pass.strip(), role='vendedor')
@@ -241,6 +241,7 @@ elif tab == "Registrarse":
                 st.sidebar.error(msg)
         else:
             st.sidebar.error("Completá usuario y contraseña.")
+
             
     st.markdown("</div>", unsafe_allow_html=True)
 
