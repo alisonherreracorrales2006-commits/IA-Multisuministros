@@ -211,21 +211,39 @@ if not st.session_state['logged_in']:
         unsafe_allow_html=True
     )
 
-    # === Caja de login ===
-    st.markdown("<div class='login-box'>", unsafe_allow_html=True)
-    username = st.text_input(" Usuario", key="login_user")
-    password = st.text_input(" Contraseña", type="password", key="login_pw")
+   # === Caja de login ===
+st.markdown("<div class='login-box'>", unsafe_allow_html=True)
+username = st.text_input(" Usuario", key="login_user")
+password = st.text_input(" Contraseña", type="password", key="login_pw")
 
-    if st.button("Iniciar sesión"):
-        ok, res = authenticate(username.strip(), password.strip())
-        if ok:
-            st.session_state['logged_in'] = True
-            st.session_state['username'] = username.strip()
-            st.session_state['role'] = res
-            st.success(f"Bienvenido@, {st.session_state['username']}")
-            st.rerun()
+if st.button("Iniciar sesión"):
+    ok, res = authenticate(username.strip(), password.strip())
+    if ok:
+        st.session_state['logged_in'] = True
+        st.session_state['username'] = username.strip()
+        st.session_state['role'] = res
+        st.success(f"Bienvenido, {st.session_state['username']}")
+        st.rerun()
+    else:
+        st.error("Usuario o contraseña incorrectos.")
+
+elif tab == "Registrarse":
+    st.sidebar.markdown("### Registrarse")
+    new_user = st.sidebar.text_input("Usuario nuevo", key="reg_user")
+    new_pass = st.sidebar.text_input("Contraseña", type="password", key="reg_pw")
+
+    if st.sidebar.button("Crear cuenta"):
+        if new_user.strip() and new_pass.strip():
+            ok, msg = register_user(new_user.strip(), new_pass.strip(), role='vendedor')
+            if ok:
+                st.sidebar.success("Cuenta creada. Ahora iniciá sesión.")
+            else:
+                st.sidebar.error(msg)
         else:
-            st.error("Usuario o contraseña incorrectos.")
+            st.sidebar.error("Completá usuario y contraseña.")
+
+
+
     st.markdown("</div>", unsafe_allow_html=True)
 
             else:
