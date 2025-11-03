@@ -241,29 +241,27 @@ elif tab == "Registrarse":
                 st.sidebar.error(msg)
         else:
             st.sidebar.error("Completá usuario y contraseña.")
-
-
-
+            
     st.markdown("</div>", unsafe_allow_html=True)
 
-               else:
-        st.sidebar.error(res)
+    elif tab == "Registrarse":
+    st.sidebar.markdown("### Registrarse")
+    new_user = st.sidebar.text_input("Usuario nuevo", key="reg_user")
+    new_pass = st.sidebar.text_input("Contraseña", type="password", key="reg_pw")
 
-    else:
-        st.sidebar.markdown("### Registrarse")
-        new_user = st.sidebar.text_input("Usuario nuevo", key="reg_user")
-        new_pass = st.sidebar.text_input("Contraseña", type="password", key="reg_pw")
-        if st.sidebar.button("Crear cuenta"):
-            if new_user.strip() and new_pass.strip():
-                ok,msg = register_user(new_user.strip(), new_pass.strip(), role='vendedor')
-                if ok:
-                    st.sidebar.success("Cuenta creada. Ahora iniciá sesión.")
-                else:
-                    st.sidebar.error(msg)
+    if st.sidebar.button("Crear cuenta"):
+        if new_user.strip() and new_pass.strip():
+            ok, msg = register_user(new_user.strip(), new_pass.strip(), role='vendedor')
+            if ok:
+                st.sidebar.success("Cuenta creada. Ahora iniciá sesión.")
             else:
-                st.sidebar.error("Completá usuario y contraseña.")
-    st.sidebar.markdown("---")
-    st.sidebar.info("Si tenés problemas, contactá al administrador.")
+                st.sidebar.error(msg)
+        else:
+            st.sidebar.error("Completá usuario y contraseña.")
+
+st.sidebar.markdown("---")
+st.sidebar.info("Si tenés problemas, contactá al administrador.")
+
 else:
     st.sidebar.write(f"**Usuario:** {st.session_state['username']}")
     st.sidebar.write(f"**Rol:** {st.session_state['role']}")
