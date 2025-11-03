@@ -1,0 +1,67 @@
+/* === ESTILO LOGIN MULTISUMINISTROS === */
+body {
+  background: radial-gradient(circle at top left, #001F3F, #000814);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.stApp {
+  background: linear-gradient(135deg, rgba(0,0,50,0.85), rgba(0,0,20,0.95)),
+              url("https://static.vecteezy.com/system/resources/previews/003/127/825/non_2x/digital-technology-background-free-vector.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+h1, h2, h3, h4 {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.stTextInput > div > div > input {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.stButton button {
+  background: linear-gradient(90deg, #004aad, #d40000);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  padding: 0.6em 1.5em;
+  transition: 0.3s;
+}
+
+.stButton button:hover {
+  background: linear-gradient(90deg, #d40000, #004aad);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.sidebar .sidebar-content {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+img {
+  display: block;
+  margin: auto;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.stAlert {
+  background-color: rgba(255,255,255,0.1);
+  border-left: 4px solid #004aad;
+  border-radius: 5px;
+}
+
