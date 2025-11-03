@@ -257,8 +257,6 @@ elif tab == "Registrarse":
                 st.sidebar.success("Cuenta creada. Ahora iniciá sesión.")
             else:
                 st.sidebar.error(msg)
-        else:
-            st.sidebar.error("Completá usuario y contraseña.")
 
 st.sidebar.markdown("---")
 st.sidebar.info("Si tenés problemas, contactá al administrador.")
