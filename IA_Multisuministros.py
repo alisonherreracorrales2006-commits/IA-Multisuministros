@@ -214,7 +214,7 @@ else:
                 st.write(f"- {r['mensaje']} ({r['creado_en'][:19]})")
             if st.sidebar.button("Marcar todas como leídas"):
                 run_query("UPDATE notificaciones SET leido=1 WHERE usuario=?", (st.session_state['username'],))
-               st.rerun()
+                st.rerun()
     if st.sidebar.button("Cerrar sesión"):
         st.session_state['logged_in'] = False
         st.session_state['username'] = None
