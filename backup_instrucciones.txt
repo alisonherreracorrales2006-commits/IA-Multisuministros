@@ -1,0 +1,3 @@
+Backup de la DB (codigos_multisuministros.db):
+- Desde Render: entrar al Shell y copiar el archivo a /tmp, comprimir y descargar.
+- Local: copiar el archivo codigos_multisuministros.db y guardarlo en un lugar seguro.
