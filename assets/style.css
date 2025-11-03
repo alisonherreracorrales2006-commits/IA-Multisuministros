@@ -1,67 +1,30 @@
-/* === ESTILO LOGIN MULTISUMINISTROS === */
-body {
-  background: radial-gradient(circle at top left, #001F3F, #000814);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-}
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+html, body, [class*="css"]  { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
 .stApp {
-  background: linear-gradient(135deg, rgba(0,0,50,0.85), rgba(0,0,20,0.95)),
-              url("https://static.vecteezy.com/system/resources/previews/003/127/825/non_2x/digital-technology-background-free-vector.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  background: radial-gradient(1200px 700px at 80% 10%, rgba(19,36,70,.35), transparent 60%),
+              radial-gradient(900px 600px at 10% 90%, rgba(224,0,45,.18), transparent 60%),
+              linear-gradient(135deg, #0a0f1f 0%, #0b1430 45%, #081026 100%);
+  animation: bgshift 18s ease-in-out infinite alternate;
 }
-
-h1, h2, h3, h4 {
-  color: #ffffff;
-  text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-}
-
-.stTextInput > div > div > input {
-  background-color: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  border-radius: 10px;
-  padding: 8px;
-}
-
-.stButton button {
-  background: linear-gradient(90deg, #004aad, #d40000);
-  color: white;
-  border-radius: 20px;
-  border: none;
-  font-weight: bold;
-  padding: 0.6em 1.5em;
-  transition: 0.3s;
-}
-
-.stButton button:hover {
-  background: linear-gradient(90deg, #d40000, #004aad);
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
-}
-
-.sidebar .sidebar-content {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-}
-
-img {
-  display: block;
-  margin: auto;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.stAlert {
-  background-color: rgba(255,255,255,0.1);
-  border-left: 4px solid #004aad;
-  border-radius: 5px;
-}
-
+@keyframes bgshift { 0% { filter: hue-rotate(0deg) brightness(1); } 100% { filter: hue-rotate(-8deg) brightness(1.05); } }
+#MainMenu, footer, header {visibility: hidden;}
+.ms-login-wrap { min-height: 78vh; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.ms-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); border-radius: 18px; padding: 28px 28px 22px; box-shadow: 0 20px 40px rgba(0,0,0,0.35); }
+.ms-title { font-weight: 700; letter-spacing: .3px; background: linear-gradient(90deg,#e0002d 0%,#0aa2ff 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.8rem; margin: .15rem 0 1rem 0; }
+.stButton>button { width: 100%; border-radius: 12px; padding: 10px 14px; font-weight: 700; border: 1px solid rgba(255,255,255,.18); background: linear-gradient(180deg, #0aa2ff, #0072e6); box-shadow: 0 8px 18px rgba(10,162,255,.35); transition: transform .08s ease, box-shadow .2s ease; }
+.stButton>button:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(10,162,255,.5); }
+.stButton>button:active { transform: translateY(0); }
+.css-1cpxqw2, .stTextInput>div>div>input, .stPassword>div>div>input { background: rgba(10,12,24,.5); border-radius: 12px !important; border: 1px solid rgba(255,255,255,.16); color: #e9eefc !important; }
+label { color: #b7c3e6 !important; font-weight: 600; }
+.ms-robot { display:flex; align-items:center; justify-content:center; filter: drop-shadow(0 20px 30px rgba(0,160,255,.25)); }
+.ms-robot img, .ms-robot svg { width: 90%; max-width: 520px; height: auto; opacity: .95; }
+.ms-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 12px; }
+.ms-card-tile { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); padding: 18px; border-radius: 16px; transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease; }
+.ms-card-tile:hover { transform: translateY(-2px); border-color: rgba(10,162,255,.5); box-shadow: 0 12px 28px rgba(10,162,255,.18); }
+.ms-card-tile h4 { margin: 0 0 6px 0; color:#e9eefc; }
+.ms-card-tile p { margin: 0; color:#b9c6ea; font-size:.92rem; }
+.ms-topbar { display:flex; align-items:center; gap:12px; margin: 10px 0 8px; }
+.ms-topbar img { height:38px; width:auto; }
+.ms-topbar h2 { margin:0; color:#e9eefc; letter-spacing:.3px; }
+.small-muted { color:#a4b4db; font-size:.92rem; }
