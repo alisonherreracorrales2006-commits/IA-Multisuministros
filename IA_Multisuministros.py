@@ -246,8 +246,9 @@ elif tab == "Registrarse":
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-            else:
-                st.sidebar.error(res)
+               else:
+        st.sidebar.error(res)
+
     else:
         st.sidebar.markdown("### Registrarse")
         new_user = st.sidebar.text_input("Usuario nuevo", key="reg_user")
