@@ -1,7 +1,0 @@
-streamlit
-scikit-learn
-pandas
-streamlit-lottie
-werkzeug
-requests
-Pillow
